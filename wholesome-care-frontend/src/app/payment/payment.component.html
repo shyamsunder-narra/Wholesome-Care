@@ -1,0 +1,34 @@
+<div class="page" fxLayout="column" fxLayoutAlign="center center">
+
+  <div *ngIf="errMessage" class="card errorMessage">{{errMessage}}</div>
+
+  <div class="note card">Note: Please, provide card no as 4242424242424242 for test purpose</div>
+<div class="card">
+
+  <div class="login-title">Card Details</div>
+  <div class="formbox">
+    <form [formGroup]="cardDetails">
+      <mat-form-field appearance="fill">
+        <mat-label>Card Number</mat-label>
+        <input matInput type="number" required formControlName="cardNumber">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Expiry Month</mat-label>
+        <input matInput type="number" formControlName="expMonth">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Expiry Year</mat-label>
+        <input matInput type="number" required formControlName="expYear">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>CVC</mat-label>
+        <input matInput type="number" required formControlName="cvc">
+      </mat-form-field>
+      <button class="btn" type="submit" (click)="payCharge();" [disabled]="!cardDetails.valid">Pay
+        Now</button>
+    </form>
+  </div>
+
+</div>
+<mat-progress-spinner [mode]="'indeterminate'" *ngIf="loading$ | async"></mat-progress-spinner>
+</div>
